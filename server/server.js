@@ -4,19 +4,23 @@ import cors from "cors";
 
 const url = process.env.MONGO_DB_URL;
 const dbName = process.env.MONGO_DB;
-// since we have multiple collections, i can't choose a single variable
-// manually type it out every time OR have the server in multiple files
+//^^these might have to be moved to the individual router files
+
+import planetsRouter from './routers/planetsRouter.js'
+import charactersRouter from './routers/charactersRouter.js'
+import filmsRouter from "./routers/filmsRouter.js";
+
 
 const app = express();
-app.use(cors());
-const PORT = 3000;
 
+const PORT = 3000;
 // Middleware to parse JSON bodies
+app.use(cors());
 app.use(express.json());
 
-app.get("/api/planets", (req, res) => {
-  res.send("hello!");
-});
+app.use('/api/characters', charactersRouter);
+app.use('/api/films', filmsRouter);
+app.use('/api/planets', planetsRouter)
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
