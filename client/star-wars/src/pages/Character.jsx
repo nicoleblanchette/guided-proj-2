@@ -61,9 +61,9 @@ return (
     <h1>{character?.name}</h1>
     <div>
         <div>
-            <p>Height: {character?.height} cm</p>
-            <p>Mass: {character?.mass} kg</p>
-            <p>Born: {character?.birth_year}</p>
+            <div>Height: {character?.height} cm</div>
+            <div>Mass: {character?.mass} kg</div>
+            <div>Born: {character?.birth_year}</div>
         </div>
         <h2>Homeworld</h2>
         <div onClick={() => navigate(`/planet/${character.homeworld}`)}>{homeworld}</div>
