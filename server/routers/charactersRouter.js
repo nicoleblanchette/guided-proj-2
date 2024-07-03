@@ -11,25 +11,37 @@ const collection = db.collection(characterCollect);
 
 const charactersRouter = express.Router();
 
-charactersRouter.get('/:id', (req, res) => {
+charactersRouter.get("/", async (req, res) => {
+  try {
+    const characters = await collection.find({}).toArray();
+    res.json(characters);
+  } catch (err) {
+    console.error("Error:", err);
+    res.status(500).send("Hmmm, something's wrong... No characters for you! ☹");
+  }
+});
+
+charactersRouter.get('/:id', async (req, res) => {
     const { id } = req.params
-    res.send('please tell me its working')
+    try {
+      const characters = await collection.find({id: parseInt(id)}).toArray();
+      res.json(characters);
+    } catch (err) {
+      console.error("Error:", err);
+      res.status(500).send(err.message);
+    }
 })
 
 charactersRouter.get('/:id/films', (req, res) => {
-    const { id } = req.params
-    res.send('tell me its working')
+    // const { id } = req.params
+    // try {
+    //   const films = await (collection.find({}))
+    // }
+
+
 
 })
 
-charactersRouter.get("/", async (req, res) => {
-    try {
-      const character = await collection.find({}).toArray();
-      res.json(character);
-    } catch (err) {
-      console.error("Error:", err);
-      res.status(500).send("Hmmm, something's wrong... No characters for you! ☹");
-    }
-  });
+
 
 export default charactersRouter;
