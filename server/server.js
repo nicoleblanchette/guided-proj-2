@@ -2,8 +2,8 @@ import express from "express";
 import { MongoClient } from "mongodb";
 import cors from "cors";
 
-const url = process.env.MONGO_DB_URL;
-const dbName = process.env.MONGO_DB;
+// const url = process.env.MONGO_DB_URL;
+// const dbName = process.env.MONGO_DB;
 //^^these might have to be moved to the individual router files
 
 import planetsRouter from './routers/planetsRouter.js'
